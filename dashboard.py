@@ -3,8 +3,18 @@ Brand-aligned rose-gold edition · Monthly comparison · Pink/Peach palette
 """
 import base64
 import os
-from datetime import date, datetime
+from datetime import date, datetime, timezone, timedelta
 from pathlib import Path
+
+BANGKOK_TZ = timezone(timedelta(hours=7))
+
+
+def now_bkk():
+    return datetime.now(BANGKOK_TZ)
+
+
+def today_bkk():
+    return now_bkk().date()
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -400,7 +410,7 @@ if not HAS_META_TOKEN:
 
 from lib.meta_loader import signature as meta_sig
 sig_label = meta_sig()
-today = date.today()
+today = today_bkk()
 since = date(2026, 2, 1)  # extend to Feb for monthly comparison
 
 with st.spinner("กำลังดึงข้อมูลจาก Meta API…"):
@@ -453,7 +463,7 @@ st.markdown(f"""
 # ── Refresh / Last updated ────────────────
 fresh_col1, fresh_col2 = st.columns([5, 1])
 with fresh_col1:
-    last_str = datetime.now().strftime("%-d %b %Y · %H:%M")
+    last_str = now_bkk().strftime("%-d %b %Y · %H:%M") + " ICT"
     st.markdown(
         f"<div style='color:{MUTED};font-size:0.82rem;letter-spacing:1px;'>"
         f"<span style='color:{SUCCESS};font-weight:700;'>●</span> "
