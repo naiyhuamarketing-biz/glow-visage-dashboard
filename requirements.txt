@@ -1,0 +1,13 @@
+facebook-business==20.0.0
+google-api-python-client==2.130.0
+google-auth==2.30.0
+google-auth-oauthlib==1.2.0
+gspread==6.1.2
+openpyxl==3.1.2
+pillow==10.3.0
+streamlit==1.36.0
+plotly==5.22.0
+pandas==2.2.2
+python-dotenv==1.0.1
+requests==2.32.3
+playwright==1.45.0
